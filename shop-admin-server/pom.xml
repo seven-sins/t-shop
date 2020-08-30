@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.hiya3d</groupId>
+		<artifactId>t-shop</artifactId>
+		<version>1.0.1</version>
+	</parent>
+	<artifactId>shop-admin-server</artifactId>
+	<name>shop-admin-server</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.hiya3d</groupId>
+			<artifactId>common-base</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hiya3d</groupId>
+			<artifactId>common-utils</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hiya3d</groupId>
+			<artifactId>shop-model</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hiya3d</groupId>
+			<artifactId>shop-mapper</artifactId>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<finalName>shop-admin-server</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
