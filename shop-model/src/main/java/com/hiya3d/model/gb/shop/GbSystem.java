@@ -1,11 +1,10 @@
-package com.hiya3d.model.sp.category;
+package com.hiya3d.model.gb.shop;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -16,37 +15,27 @@ import lombok.Data;
 import tk.mybatis.mapper.annotation.LogicDelete;
 
 /**
- * 商品颜色分类(1级分类)
+ * 系统参数
  * 
  * @author Rex.Tan
- * @date 2020年8月30日 下午2:34:20
+ * @date 2020年8月30日 下午2:13:09
  */
 @Data
-public class SpGoodsColor implements Serializable {
+public class GbSystem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@ApiModelProperty(value = "id")
 	@Length(max = 32, message = "id输入超出最大长度(32)")
 	private String id;
 
-	@ApiModelProperty(value = "商品ID")
-	@Length(max = 32, message = "商品ID输入超出最大长度(32)")
-	@NotBlank(message = "商品ID不能为空")
-	private String goodsId;
+	@ApiModelProperty(value = "平台名称")
+	@Length(max = 50, message = "平台名称输入超出最大长度(50)")
+	@NotBlank(message = "平台名称不能为空")
+	private String platformName;
 
-	@ApiModelProperty(value = "颜色")
-	@Length(max = 50, message = "颜色输入超出最大长度(50)")
-	@NotBlank(message = "颜色不能为空")
-	private String color;
-
-	@ApiModelProperty(value = "示例图")
-	@Length(max = 500, message = "示例图输入超出最大长度(500)")
-	private String url;
-
-	@ApiModelProperty(value = "排序")
-	@IntValue(message = "排序取值超出范围")
-	@NotNull(message = "排序不能为空")
-	private Integer sorting;
+	@ApiModelProperty(value = "logo")
+	@Length(max = 500, message = "logo输入超出最大长度(500)")
+	private String logoImg;
 
 	@LogicDelete
 	@ApiModelProperty(value = "是否删除(1:是,0:否)")
@@ -56,11 +45,6 @@ public class SpGoodsColor implements Serializable {
 	@ApiModelProperty(value = "是否停用(1:是,0:否)")
 	@IntValue(message = "是否停用(1:是,0:否)取值超出范围")
 	private Integer isDisabled;
-
-	@ApiModelProperty(value = "店铺ID")
-	@Length(max = 32, message = "店铺ID输入超出最大长度(32)")
-	@NotBlank(message = "店铺ID不能为空")
-	private String shopId;
 
 	@ApiModelProperty(value = "创建人")
 	@Length(max = 50, message = "创建人输入超出最大长度(50)")

@@ -1,4 +1,4 @@
-package com.hiya3d.model.sp.category;
+package com.hiya3d.model.gb.shop;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,37 +16,32 @@ import lombok.Data;
 import tk.mybatis.mapper.annotation.LogicDelete;
 
 /**
- * 商品颜色分类(1级分类)
+ * 客服
  * 
  * @author Rex.Tan
- * @date 2020年8月30日 下午2:34:20
+ * @date 2020年8月30日 下午2:11:46
  */
 @Data
-public class SpGoodsColor implements Serializable {
+public class GbShopService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@ApiModelProperty(value = "id")
 	@Length(max = 32, message = "id输入超出最大长度(32)")
 	private String id;
 
-	@ApiModelProperty(value = "商品ID")
-	@Length(max = 32, message = "商品ID输入超出最大长度(32)")
-	@NotBlank(message = "商品ID不能为空")
-	private String goodsId;
+	@ApiModelProperty(value = "客服号")
+	@Length(max = 50, message = "客服号输入超出最大长度(50)")
+	@NotBlank(message = "客服号不能为空")
+	private String service;
 
-	@ApiModelProperty(value = "颜色")
-	@Length(max = 50, message = "颜色输入超出最大长度(50)")
-	@NotBlank(message = "颜色不能为空")
-	private String color;
+	@ApiModelProperty(value = "客服二维码")
+	@Length(max = 500, message = "客服二维码输入超出最大长度(500)")
+	private String serviceQrcode;
 
-	@ApiModelProperty(value = "示例图")
-	@Length(max = 500, message = "示例图输入超出最大长度(500)")
-	private String url;
-
-	@ApiModelProperty(value = "排序")
-	@IntValue(message = "排序取值超出范围")
-	@NotNull(message = "排序不能为空")
-	private Integer sorting;
+	@ApiModelProperty(value = "是否默认客服(1:是,0:否)")
+	@IntValue(message = "是否默认客服(1:是,0:否)取值超出范围")
+	@NotNull(message = "是否默认客服(1:是,0:否)不能为空")
+	private Integer isNormal;
 
 	@LogicDelete
 	@ApiModelProperty(value = "是否删除(1:是,0:否)")

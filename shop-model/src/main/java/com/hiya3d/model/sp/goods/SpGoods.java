@@ -91,10 +91,10 @@ public class SpGoods implements Serializable {
 	@IntValue(message = "是否停用(1:是,0:否)取值超出范围")
 	private Integer isDisabled;
 
-	@ApiModelProperty(value = "公司ID")
-	@Length(max = 32, message = "公司ID输入超出最大长度(32)")
-	@NotBlank(message = "公司ID不能为空")
-	private String companyId;
+	@ApiModelProperty(value = "店铺ID")
+	@Length(max = 32, message = "店铺ID输入超出最大长度(32)")
+	@NotBlank(message = "店铺ID不能为空")
+	private String shopId;
 
 	@ApiModelProperty(value = "创建人")
 	@Length(max = 50, message = "创建人输入超出最大长度(50)")

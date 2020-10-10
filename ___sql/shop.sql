@@ -18,19 +18,19 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for gb_company
+-- Table structure for gb_shop
 -- ----------------------------
-DROP TABLE IF EXISTS `gb_company`;
-CREATE TABLE `gb_company`  (
+DROP TABLE IF EXISTS `gb_shop`;
+CREATE TABLE `gb_shop`  (
   `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
-  `company_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司编码',
-  `company_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司名称',
+  `shop_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺编码',
+  `shop_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺名称',
   `manager` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '掌柜',
   `qrcode` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '二维码',
   `service` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '客服',
   `service_qrcode` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客服二维码',
   `logo_img` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'logo',
-  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '公司地址',
+  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '店铺地址',
   `phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '联系电话',
   `fax` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '传真',
   `city_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '城市ID',
@@ -50,24 +50,24 @@ CREATE TABLE `gb_company`  (
   `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
   `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '公司 公司' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '店铺 店铺' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of gb_company
+-- Records of gb_shop
 -- ----------------------------
-INSERT INTO `gb_company` VALUES ('459929174722027520', '1', 'xxx1', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 1, 0, 'cc', '100000001', '2020-08-30 14:01:11', 'cc', '100000001', '2020-08-30 14:02:26');
-INSERT INTO `gb_company` VALUES ('459929748288905216', '1', 'xxx1', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 0, 0, 'cc', '100000001', '2020-08-30 14:03:27', NULL, NULL, NULL);
-INSERT INTO `gb_company` VALUES ('459929761207361536', '1', 'xxx2', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 0, 0, 'cc', '100000001', '2020-08-30 14:03:30', NULL, NULL, NULL);
-INSERT INTO `gb_company` VALUES ('459929774406836224', '1', 'xxx3', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 0, 0, 'cc', '100000001', '2020-08-30 14:03:34', NULL, NULL, NULL);
-INSERT INTO `gb_company` VALUES ('459929844023894016', '1', 'xxx3', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 0, 0, 'cc', '100000001', '2020-08-30 14:03:50', NULL, NULL, NULL);
+INSERT INTO `gb_shop` VALUES ('459929174722027520', '1', 'xxx1', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 1, 0, 'cc', '100000001', '2020-08-30 14:01:11', 'cc', '100000001', '2020-08-30 14:02:26');
+INSERT INTO `gb_shop` VALUES ('459929748288905216', '1', 'xxx1', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 0, 0, 'cc', '100000001', '2020-08-30 14:03:27', NULL, NULL, NULL);
+INSERT INTO `gb_shop` VALUES ('459929761207361536', '1', 'xxx2', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 0, 0, 'cc', '100000001', '2020-08-30 14:03:30', NULL, NULL, NULL);
+INSERT INTO `gb_shop` VALUES ('459929774406836224', '1', 'xxx3', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 0, 0, 'cc', '100000001', '2020-08-30 14:03:34', NULL, NULL, NULL);
+INSERT INTO `gb_shop` VALUES ('459929844023894016', '1', 'xxx3', 'boss', '11', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11', 0, 0.00, 0.00, 0, 0, 'cc', '100000001', '2020-08-30 14:03:50', NULL, NULL, NULL);
 
 -- ----------------------------
--- Table structure for gb_company_favorite
+-- Table structure for gb_shop_favorite
 -- ----------------------------
-DROP TABLE IF EXISTS `gb_company_favorite`;
-CREATE TABLE `gb_company_favorite`  (
+DROP TABLE IF EXISTS `gb_shop_favorite`;
+CREATE TABLE `gb_shop_favorite`  (
   `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户ID',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
@@ -78,20 +78,20 @@ CREATE TABLE `gb_company_favorite`  (
   `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
   `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '公司(店铺)收藏 公司(店铺)收藏' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '店铺(店铺)收藏 店铺(店铺)收藏' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for gb_company_logistics
+-- Table structure for gb_shop_logistics
 -- ----------------------------
-DROP TABLE IF EXISTS `gb_company_logistics`;
-CREATE TABLE `gb_company_logistics`  (
+DROP TABLE IF EXISTS `gb_shop_logistics`;
+CREATE TABLE `gb_shop_logistics`  (
   `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
   `logistics_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '物流名称',
   `is_free` int(11) NOT NULL COMMENT '是否免费(1:是,0:否)',
   `price` decimal(11, 2) NOT NULL COMMENT '运费(is_free==0时必填)',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -102,17 +102,17 @@ CREATE TABLE `gb_company_logistics`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '物流信息 物流信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for gb_company_service
+-- Table structure for gb_shop_service
 -- ----------------------------
-DROP TABLE IF EXISTS `gb_company_service`;
-CREATE TABLE `gb_company_service`  (
+DROP TABLE IF EXISTS `gb_shop_service`;
+CREATE TABLE `gb_shop_service`  (
   `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
   `service` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '客服号',
   `service_qrcode` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客服二维码',
   `is_normal` int(11) NOT NULL COMMENT '是否默认客服(1:是,0:否)',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -120,7 +120,7 @@ CREATE TABLE `gb_company_service`  (
   `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
   `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '公司客服 公司客服' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '店铺客服 店铺客服' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for gb_system
@@ -151,7 +151,7 @@ CREATE TABLE `gb_theme`  (
   `theme_img` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '封面图',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -174,7 +174,7 @@ CREATE TABLE `odr_shopping_cart`  (
   `price` decimal(11, 2) NOT NULL COMMENT '单价',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -196,7 +196,7 @@ CREATE TABLE `sp_category`  (
   `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上级分类',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -226,7 +226,7 @@ CREATE TABLE `sp_goods`  (
   `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '省份',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -248,7 +248,7 @@ CREATE TABLE `sp_goods_color`  (
   `sorting` int(11) NOT NULL COMMENT '排序',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -273,7 +273,7 @@ CREATE TABLE `sp_goods_comment`  (
   `order_desc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '订单简单描述(购买分类等)',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -295,7 +295,7 @@ CREATE TABLE `sp_goods_comment_img`  (
   `sorting` int(11) NOT NULL COMMENT '排序',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -325,7 +325,7 @@ CREATE TABLE `sp_goods_favorite`  (
   `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户ID',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -346,7 +346,7 @@ CREATE TABLE `sp_goods_img`  (
   `sorting` int(11) NOT NULL COMMENT '排序',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -367,7 +367,7 @@ CREATE TABLE `sp_goods_params`  (
   `sorting` int(11) NOT NULL COMMENT '排序',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -389,7 +389,7 @@ CREATE TABLE `sp_goods_params_detail`  (
   `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '描述',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -413,7 +413,7 @@ CREATE TABLE `sp_goods_sku`  (
   `sorting` int(11) NOT NULL COMMENT '排序',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -433,7 +433,7 @@ CREATE TABLE `sp_goods_voucher`  (
   `voucher_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '优惠券ID',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -457,7 +457,7 @@ CREATE TABLE `sp_voucher`  (
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -478,7 +478,7 @@ CREATE TABLE `sp_voucher_receive`  (
   `status` int(11) NOT NULL COMMENT '状态(1:未使用,2:已使用,3:已过期,4:失效 )',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -523,7 +523,7 @@ CREATE TABLE `sys_role`  (
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -543,7 +543,7 @@ CREATE TABLE `sys_role_menu`  (
   `menu_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '菜单ID',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -573,7 +573,7 @@ CREATE TABLE `sys_user`  (
   `is_sys_user` int(11) NULL DEFAULT NULL COMMENT '是否系统用户(可以在后台操作)',
   `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
@@ -592,7 +592,7 @@ CREATE TABLE `sys_user_role`  (
   `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户ID',
   `role_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色ID',
   `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `company_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '公司ID',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
   `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
   `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
   `created_time` datetime(0) NOT NULL COMMENT '创建时间',
