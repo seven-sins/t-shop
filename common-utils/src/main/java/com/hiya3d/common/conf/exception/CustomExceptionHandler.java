@@ -1,11 +1,9 @@
-package com.hiya3d.base.exception;
+package com.hiya3d.common.conf.exception;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
@@ -21,17 +19,17 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.hiya3d.base.date.CustomDateFormat;
+import com.hiya3d.base.exception.CustomException;
 import com.hiya3d.base.response.Result;
+import com.hiya3d.common.utils.LogUtil;
 
 /**
  * 全局异常捕获
- * 
- * @author Tan Ling 
+ * @author Rex.Tan
  * @date 2018年12月5日 下午3:10:30
  */
 @RestControllerAdvice
 public class CustomExceptionHandler {
-	private static final Logger LOG = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
 	/**
 	 * 参数验证异常处理
@@ -47,11 +45,11 @@ public class CustomExceptionHandler {
 			List<ObjectError> errors = bindingResult.getAllErrors();
 			if (errors != null && !errors.isEmpty()) {
 				String errorMsg = errors.get(0).getDefaultMessage();
-				LOG.error("=============未捕获异常: ", errorMsg);
+				LogUtil.printException("未捕获异常: ", e);
 				return new Result<>(400, errorMsg);
 			}
 		}
-		LOG.error("=============未捕获异常: ", e);
+		LogUtil.printException("未捕获异常: ", e);
 		return new Result<>(400, "参数验证错误!");
 	}
 	
@@ -85,7 +83,7 @@ public class CustomExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public Object commonException(Exception e) {
-		LOG.error("=============未捕获异常: ", e);
+		LogUtil.printException("未捕获异常: ", e);
 		return new Result<>(400, "未捕获异常: " + e.getMessage());
 	}
 

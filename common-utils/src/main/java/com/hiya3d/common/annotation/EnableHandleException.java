@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
-import com.hiya3d.base.exception.CustomExceptionHandler;
+import com.hiya3d.common.conf.exception.CustomExceptionHandler;
 
 /**
  * 引入数据库配置
