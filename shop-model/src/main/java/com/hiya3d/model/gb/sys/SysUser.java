@@ -74,8 +74,8 @@ public class SysUser implements Serializable {
 	@Length(max = 500, message = "头像输入超出最大长度(500)")
 	private String headImg;
 
-	@ApiModelProperty(value = "是否系统用户(可以在后台操作)")
-	@IntValue(message = "是否系统用户(可以在后台操作)取值超出范围")
+	@ApiModelProperty(value = "是否系统用户(1:是, 0:否, 可以在后台操作)")
+	@IntValue(message = "是否系统用户(1:是, 0:否, 可以在后台操作)取值超出范围")
 	private Integer isSysUser;
 
 	@LogicDelete
