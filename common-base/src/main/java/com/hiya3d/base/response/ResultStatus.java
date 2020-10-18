@@ -6,7 +6,7 @@ package com.hiya3d.base.response;
  */
 public class ResultStatus {
 
-	public static final Integer OK = 0;
+	public static final Integer OK = 200;
 	
 	public static final Integer FAILTURE = 400;
 }

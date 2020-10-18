@@ -1,5 +1,7 @@
 package com.hiya3d.admin.gb.shop.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.hiya3d.admin.gb.shop.service.GbThemeService;
@@ -15,4 +17,8 @@ import com.hiya3d.model.gb.shop.GbTheme;
 @Service
 public class GbThemeServiceImpl extends BaseServiceImpl<GbThemeMapper, GbTheme> implements GbThemeService {
 
+	@Override
+	public List<GbTheme> find(GbTheme entity) {
+		return baseMapper.find(entity);
+	}
 }

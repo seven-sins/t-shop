@@ -46,10 +46,6 @@ public class GbTheme implements Serializable {
 	@IntValue(message = "是否停用(1:是,0:否)取值超出范围")
 	private Integer isDisabled;
 
-	@ApiModelProperty(value = "店铺ID")
-	@Length(max = 32, message = "店铺ID输入超出最大长度(32)")
-	private String shopId;
-
 	@ApiModelProperty(value = "创建人")
 	@Length(max = 50, message = "创建人输入超出最大长度(50)")
 	private String createdBy;

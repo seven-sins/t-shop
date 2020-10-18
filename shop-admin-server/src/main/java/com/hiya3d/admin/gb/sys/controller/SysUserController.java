@@ -41,7 +41,6 @@ public class SysUserController {
 	public Result<List<SysUser>> list(Page page, SysUser sysUser) {
 		page.start();
 		List<SysUser> list = sysUserService.find(sysUser);
-
 		return new Result<>(list).total(new PageInfo<SysUser>(list).getTotal());
 	}
 

@@ -20,6 +20,7 @@ import com.hiya3d.base.request.Page;
 import com.hiya3d.base.response.Result;
 import com.hiya3d.base.utils.IdMaker;
 import com.hiya3d.model.gb.shop.GbShop;
+import com.hiya3d.model.gb.shop.vo.GbShopVo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,11 +40,11 @@ public class GbShopController {
 
 	@ApiOperation(value = "列表查询")
 	@GetMapping("/gbShop")
-	public Result<List<GbShop>> list(Page page, GbShop gbShop) {
+	public Result<List<GbShopVo>> list(Page page, GbShopVo gbShopVo) {
 		page.start();
-		List<GbShop> list = gbShopService.find(gbShop);
+		List<GbShopVo> list = gbShopService.find(gbShopVo);
 
-		return new Result<>(list).total(new PageInfo<GbShop>(list).getTotal());
+		return new Result<>(list).total(new PageInfo<GbShopVo>(list).getTotal());
 	}
 
 	@ApiOperation(value = "单记录查询")
@@ -68,6 +69,9 @@ public class GbShopController {
 	@PutMapping("/gbShop/{id}")
 	public Result<?> update(@PathVariable("id") String id, @Valid @RequestBody GbShop gbShop) {
 		gbShop.setId(id);
+		gbShop.setSaleQty(null);
+		gbShop.setGrade(null);
+		gbShop.setLevel(null);
 		gbShopService.updateByIdSelective(gbShop);
 
 		return Result.SUCCESS;

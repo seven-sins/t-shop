@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Rex.Tan
  * @date 2019年7月29日 下午2:30:07
  */
-public class Result<T> implements Serializable{
+public class Result<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	static final String SUCCESS_MESSAGE = "操作成功";
 	static final String FAILURE_MESSAGE = "操作失败";

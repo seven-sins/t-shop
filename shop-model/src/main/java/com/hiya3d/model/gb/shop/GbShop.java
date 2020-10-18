@@ -34,12 +34,12 @@ public class GbShop implements Serializable {
 	@ApiModelProperty(value = "公司编码")
 	@Length(max = 50, message = "公司编码输入超出最大长度(50)")
 	@NotBlank(message = "公司编码不能为空")
-	private String companyCode;
+	private String shopCode;
 
 	@ApiModelProperty(value = "公司名称")
 	@Length(max = 100, message = "公司名称输入超出最大长度(100)")
 	@NotBlank(message = "公司名称不能为空")
-	private String companyName;
+	private String shopName;
 
 	@ApiModelProperty(value = "掌柜")
 	@Length(max = 50, message = "掌柜输入超出最大长度(50)")
@@ -49,22 +49,22 @@ public class GbShop implements Serializable {
 	@ApiModelProperty(value = "二维码")
 	@Length(max = 500, message = "二维码输入超出最大长度(500)")
 	@NotBlank(message = "二维码不能为空")
-	private String qrcode;
+	private String managerQrcode;
 
 	@ApiModelProperty(value = "客服")
 	@Length(max = 50, message = "客服输入超出最大长度(50)")
 	@NotBlank(message = "客服不能为空")
-	private String service;
+	private String customerService;
 
 	@ApiModelProperty(value = "客服二维码")
 	@Length(max = 500, message = "客服二维码输入超出最大长度(500)")
-	private String serviceQrcode;
+	private String customerServiceQrcode;
 
 	@ApiModelProperty(value = "logo")
 	@Length(max = 500, message = "logo输入超出最大长度(500)")
 	private String logoImg;
 
-	@ApiModelProperty(value = "公司地址")
+	@ApiModelProperty(value = "店铺地址")
 	@Length(max = 100, message = "公司地址输入超出最大长度(100)")
 	private String address;
 

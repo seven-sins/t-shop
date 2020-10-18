@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hiya3d.mapper.gb.shop.GbThemeMapper">
+  	
+  	<select id="find" resultType="com.hiya3d.model.gb.shop.GbTheme" parameterType="com.hiya3d.model.gb.shop.GbTheme">
+  		select
+  			id,
+  			theme_name,
+  			theme_img,
+  			is_deleted,
+  			is_disabled,
+  			created_by,
+  			created_time,
+  			updated_by,
+  			updated_time 
+  		from gb_theme a
+  		WHERE a.is_deleted = 0
+		<if test="themeName != null and themeName != '' ">
+			AND a.theme_name like concat('%', #{themeName}, '%') 
+		</if>
+		order By created_time DESC
+  	</select>
+  	
+</mapper>

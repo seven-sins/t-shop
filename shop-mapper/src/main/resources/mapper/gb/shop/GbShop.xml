@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hiya3d.mapper.gb.shop.GbShopMapper">
+  	
+  	<select id="find" resultType="com.hiya3d.model.gb.shop.vo.GbShopVo" parameterType="com.hiya3d.model.gb.shop.vo.GbShopVo">
+  		SELECT
+			a.id,
+			a.shop_code,
+			a.shop_name,
+			a.manager,
+			a.manager_qrcode,
+			a.customer_service,
+			a.customer_service_qrcode,
+			a.logo_img,
+			a.address,
+			a.phone,
+			a.fax,
+			a.city_id,
+			c.region_name as city,
+			a.province_id,
+			b.region_name as province,
+			a.theme_id,
+			d.theme_name,
+			a.sale_qty,
+			a.grade,
+			a.LEVEL,
+			a.is_deleted,
+			a.is_disabled,
+			a.created_by,
+			a.created_user_id,
+			a.created_time,
+			a.updated_by,
+			a.updated_user_id,
+			a.updated_time 
+		FROM
+			gb_shop a
+		LEFT JOIN region b on a.province_id=b.region_id
+		LEFT JOIN region c on a.city_id=c.region_id
+		JOIN gb_theme d on a.theme_id=d.id
+		WHERE
+			a.is_deleted = 0 
+		<if test="themeName != null and themeName != '' ">
+			AND d.theme_name like concat('%', #{themeName}, '%') 
+		</if>
+		<if test="shopName != null and shopName != '' ">
+			AND a.shop_name like concat('%', #{shopName}, '%') 
+		</if>
+		ORDER BY
+			created_time DESC
+  	</select>
+  	
+</mapper>

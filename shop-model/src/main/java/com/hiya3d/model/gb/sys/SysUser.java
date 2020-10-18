@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hiya3d.base.validator.IntValue;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -51,6 +52,7 @@ public class SysUser implements Serializable {
 	@Length(max = 30, message = "身份证输入超出最大长度(30)")
 	private String idCard;
 
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	@ApiModelProperty(value = "生日")
 	private Date birthday;
 
