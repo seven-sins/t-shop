@@ -13,6 +13,7 @@ import com.hiya3d.base.validator.IntValue;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import tk.mybatis.mapper.annotation.LogicDelete;
+import tk.mybatis.mapper.annotation.Order;
 
 /**
  * 分类
@@ -20,7 +21,7 @@ import tk.mybatis.mapper.annotation.LogicDelete;
  * @date 2020年8月30日 下午2:31:34
  */
 @Data
-public class SpCategory implements Serializable {
+public class SpGoodsCategory implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@ApiModelProperty(value = "id")
@@ -36,6 +37,10 @@ public class SpCategory implements Serializable {
 	@Length(max = 50, message = "分类编码输入超出最大长度(50)")
 	@NotBlank(message = "分类编码不能为空")
 	private String categoryCode;
+	
+	@ApiModelProperty(value = "排序")
+	@Order("ASC")
+	private Integer sort;
 
 	@ApiModelProperty(value = "备注")
 	@Length(max = 500, message = "备注输入超出最大长度(500)")
@@ -56,7 +61,6 @@ public class SpCategory implements Serializable {
 
 	@ApiModelProperty(value = "店铺ID")
 	@Length(max = 32, message = "店铺ID输入超出最大长度(32)")
-	@NotBlank(message = "店铺ID不能为空")
 	private String shopId;
 
 	@ApiModelProperty(value = "创建人")

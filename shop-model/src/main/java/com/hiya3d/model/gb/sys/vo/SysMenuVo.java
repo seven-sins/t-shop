@@ -18,4 +18,7 @@ public class SysMenuVo extends SysMenu {
 	
 	@ApiModelProperty(value = "菜单名称(修复前端控件显示问题)")
 	private String text;
+	
+	@ApiModelProperty(value = "图标样式")
+	private String iconCls;
 }

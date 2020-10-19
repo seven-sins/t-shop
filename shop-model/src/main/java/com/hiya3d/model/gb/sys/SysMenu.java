@@ -13,6 +13,7 @@ import com.hiya3d.base.validator.IntValue;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import tk.mybatis.mapper.annotation.LogicDelete;
+import tk.mybatis.mapper.annotation.Order;
 
 /**
  * 菜单
@@ -56,6 +57,10 @@ public class SysMenu implements Serializable {
 	@ApiModelProperty(value = "上级菜单ID")
 	@Length(max = 32, message = "上级菜单ID输入超出最大长度(32)")
 	private String parentId;
+	
+	@ApiModelProperty(value = "排序")
+	@Order("ASC")
+	private Integer sort;
 
 	@LogicDelete
 	@ApiModelProperty(value = "是否删除(1:是,0:否)")

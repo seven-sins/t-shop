@@ -26,5 +26,5 @@ public class SysUser implements Serializable {
 
 	private Integer sex;
 	
-	private String companyId;
+	private String shopId;
 }

@@ -42,7 +42,7 @@ public class SysMenuController {
 	@ApiOperation(value = "列表查询")
 	@GetMapping("/sysMenu")
 	public Result<List<SysMenuVo>> list(Page page, SysMenu sysMenu) {
-		page.start();
+		//		page.start();
 		List<SysMenu> list = sysMenuService.find(sysMenu);
 		List<SysMenuVo> treeList = new ArrayList<>();
 		this.refactory(list, treeList);
@@ -66,6 +66,7 @@ public class SysMenuController {
 				SysMenuVo menuVo = new SysMenuVo();
 				BeanUtils.copyProperties(item, menuVo);
 				menuVo.setText(menuVo.getMenuName());
+				// menuVo.setIconCls(menuVo.getIcon());
 				menuVo.setChildren(this.getChildren(list, menuVo.getId()));
 				treeList.add(menuVo);
 			}
@@ -79,12 +80,13 @@ public class SysMenuController {
 				SysMenuVo menuVo = new SysMenuVo();
 				BeanUtils.copyProperties(item,  menuVo);
 				menuVo.setText(menuVo.getMenuName());
+				// menuVo.setIconCls(menuVo.getIcon());
 				menuVo.setChildren(this.getChildren(list, menuVo.getId()));
 				children.add(menuVo);
 			}
 		}
 		
-		return children;
+		return children.isEmpty() ? null : children;
 	}
 
 	@ApiOperation(value = "单记录查询")

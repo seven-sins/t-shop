@@ -100,14 +100,14 @@ public class CustomMybatisInterceptor implements Interceptor {
                         field.setAccessible(false);
                     }
                     // 公司(店铺)ID
-                    else if ("companyId".equals(field.getName())) {
-                        field.setAccessible(true);
-                        Object value = field.get(parameter);
-                        if (value == null && UserContext.get() != null) {
-                            field.set(parameter, UserContext.get().getCompanyId());
-                        }
-                        field.setAccessible(false);
-                    }
+					//                    else if ("shopId".equals(field.getName())) {
+					//                        field.setAccessible(true);
+					//                        Object value = field.get(parameter);
+					//                        if (value == null && UserContext.get() != null) {
+					//                            field.set(parameter, UserContext.get().getShopId());
+					//                        }
+					//                        field.setAccessible(false);
+					//                    }
                 } catch (Exception e) {
                     LOG.error("=============自动设置创建人以及创建时间时出错", e);
                 }

@@ -87,6 +87,7 @@ public class RequestAop {
 			SysUser user = new SysUser();
 			user.setUserId("100000001");
 			user.setUserName("cc");
+			user.setShopId("477789028320878592");
 			UserContext.set(user);
 		}
 		/**
