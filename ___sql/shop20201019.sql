@@ -11,56 +11,11 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 18/10/2020 21:49:02
+ Date: 19/10/2020 21:57:33
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for gb_company_logistics
--- ----------------------------
-DROP TABLE IF EXISTS `gb_company_logistics`;
-CREATE TABLE `gb_company_logistics`  (
-  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
-  `logistics_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '物流名称',
-  `is_free` int(11) NOT NULL COMMENT '是否免费(1:是,0:否)',
-  `price` decimal(11, 2) NOT NULL COMMENT '运费(is_free==0时必填)',
-  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
-  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
-  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
-  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
-  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
-  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
-  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
-  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '店铺物流信息 店铺物流信息' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for gb_menu
--- ----------------------------
-DROP TABLE IF EXISTS `gb_menu`;
-CREATE TABLE `gb_menu`  (
-  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
-  `menu_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '菜单名称',
-  `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '菜单url',
-  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图标',
-  `is_menu` int(11) NULL DEFAULT NULL COMMENT '是否菜单(1:是,0:否)',
-  `is_btn` int(11) NULL DEFAULT NULL COMMENT '是否功能按钮(1:是,0:否)',
-  `auth_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '权限编码(is_btn==1时必填)',
-  `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上级菜单ID',
-  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
-  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
-  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
-  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
-  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
-  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
-  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单 菜单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for gb_shop
@@ -122,6 +77,27 @@ CREATE TABLE `gb_shop_favorite`  (
   `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '收藏店铺 收藏店铺' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for gb_shop_logistics
+-- ----------------------------
+DROP TABLE IF EXISTS `gb_shop_logistics`;
+CREATE TABLE `gb_shop_logistics`  (
+  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `logistics_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '物流名称',
+  `is_free` int(11) NOT NULL COMMENT '是否免费(1:是,0:否)',
+  `price` decimal(11, 2) NOT NULL COMMENT '运费(is_free==0时必填)',
+  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
+  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
+  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
+  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
+  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
+  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
+  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '店铺物流信息 店铺物流信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for gb_shop_service
@@ -3761,28 +3737,6 @@ INSERT INTO `region` VALUES ('998', '220701', '市辖区', '91', 0, 0, 'Shixiaqu
 INSERT INTO `region` VALUES ('999', '220702', '宁江区', '91', 0, 0, 'Ningjiang Qu', 'NJA');
 
 -- ----------------------------
--- Table structure for sp_category
--- ----------------------------
-DROP TABLE IF EXISTS `sp_category`;
-CREATE TABLE `sp_category`  (
-  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
-  `category_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分类名称',
-  `category_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分类编码',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
-  `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上级分类',
-  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
-  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
-  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
-  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
-  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
-  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
-  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
-  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
-  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品分类 商品分类' ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for sp_goods
 -- ----------------------------
 DROP TABLE IF EXISTS `sp_goods`;
@@ -3811,6 +3765,39 @@ CREATE TABLE `sp_goods`  (
   `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品 商品' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for sp_goods_category
+-- ----------------------------
+DROP TABLE IF EXISTS `sp_goods_category`;
+CREATE TABLE `sp_goods_category`  (
+  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `category_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分类名称',
+  `category_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分类编码',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上级分类',
+  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
+  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
+  `sort` int(11) NULL DEFAULT NULL,
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
+  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
+  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
+  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
+  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
+  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品分类 商品分类' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sp_goods_category
+-- ----------------------------
+INSERT INTO `sp_goods_category` VALUES ('478165363715284992', '手机', '001', '~', NULL, 0, 0, 1, '477789028320878592', 'cc', '100000001', '2020-10-19 21:45:17', 'cc', '100000001', '2020-10-19 21:45:22');
+INSERT INTO `sp_goods_category` VALUES ('478167259750408192', '华为', '001001', NULL, '478165363715284992', 0, 0, 1, '477789028320878592', 'cc', '100000001', '2020-10-19 21:52:49', 'cc', '100000001', '2020-10-19 21:53:01');
+INSERT INTO `sp_goods_category` VALUES ('478167402918780928', '苹果', '001002', NULL, '478165363715284992', 0, 0, 2, '477789028320878592', 'cc', '100000001', '2020-10-19 21:53:23', NULL, NULL, NULL);
+INSERT INTO `sp_goods_category` VALUES ('478167557579546624', '空调', '002', '家用电器', NULL, 0, 0, 2, '477789028320878592', 'cc', '100000001', '2020-10-19 21:54:00', 'cc', '100000001', '2020-10-19 21:54:08');
+INSERT INTO `sp_goods_category` VALUES ('478167655004839936', '格力', '002001', NULL, '478167557579546624', 0, 0, 1, '477789028320878592', 'cc', '100000001', '2020-10-19 21:54:23', 'cc', '100000001', '2020-10-19 21:54:50');
+INSERT INTO `sp_goods_category` VALUES ('478167736458223616', '美的', '002002', NULL, '478167557579546624', 0, 0, 2, '477789028320878592', 'cc', '100000001', '2020-10-19 21:54:43', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sp_goods_color
@@ -4065,6 +4052,44 @@ CREATE TABLE `sp_voucher_receive`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '领取优惠券 领取优惠券' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for sys_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_menu`;
+CREATE TABLE `sys_menu`  (
+  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `menu_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '菜单名称',
+  `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '菜单url',
+  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图标',
+  `is_menu` int(11) NULL DEFAULT NULL COMMENT '是否菜单(1:是,0:否)',
+  `is_btn` int(11) NULL DEFAULT NULL COMMENT '是否功能按钮(1:是,0:否)',
+  `auth_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '权限编码(is_btn==1时必填)',
+  `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上级菜单ID',
+  `sort` int(11) NULL DEFAULT NULL,
+  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
+  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
+  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
+  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
+  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
+  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
+  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单 菜单' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_menu
+-- ----------------------------
+INSERT INTO `sys_menu` VALUES ('478136603452448768', '店铺管理', NULL, 'fa fa-cog', 1, 0, NULL, NULL, 2, 0, 0, 'cc', '100000001', '2020-10-19 19:51:00', 'cc', '100000001', '2020-10-19 20:15:10');
+INSERT INTO `sys_menu` VALUES ('478136666106961920', '主题管理', '/theme', 'fa fa-clone', 1, 0, NULL, '478136603452448768', 1, 0, 0, 'cc', '100000001', '2020-10-19 19:51:15', 'cc', '100000001', '2020-10-19 19:52:08');
+INSERT INTO `sys_menu` VALUES ('478136749883990016', '店铺管理', '/shop', 'fa fa-map-o', 1, 0, NULL, '478136603452448768', 2, 0, 0, 'cc', '100000001', '2020-10-19 19:51:35', 'cc', '100000001', '2020-10-19 19:52:16');
+INSERT INTO `sys_menu` VALUES ('478136855043579904', '系统管理', NULL, 'fa fa-user', 1, 0, NULL, NULL, 1, 0, 0, 'cc', '100000001', '2020-10-19 19:52:00', 'cc', '100000001', '2020-10-19 20:16:34');
+INSERT INTO `sys_menu` VALUES ('478137014070616064', '用户管理', '/user', 'fa fa-user-o', 1, 0, NULL, '478136855043579904', 1, 0, 0, 'cc', '100000001', '2020-10-19 19:52:38', 'cc', '100000001', '2020-10-19 20:00:32');
+INSERT INTO `sys_menu` VALUES ('478137092382466048', '角色管理', '/role', 'fa fa-drivers-license-o', 1, 0, NULL, '478136855043579904', 2, 0, 0, 'cc', '100000001', '2020-10-19 19:52:56', 'cc', '100000001', '2020-10-19 20:00:36');
+INSERT INTO `sys_menu` VALUES ('478137289426673664', '菜单管理', '/menu', 'fa fa-list-alt', 1, 0, NULL, '478136855043579904', 3, 0, 0, 'cc', '100000001', '2020-10-19 19:53:43', 'cc', '100000001', '2020-10-19 20:00:44');
+INSERT INTO `sys_menu` VALUES ('478156786963390464', '商品管理', NULL, 'fa fa-cart-plus', 1, 0, NULL, NULL, 3, 0, 0, 'cc', '100000001', '2020-10-19 21:11:12', 'cc', '100000001', '2020-10-19 21:23:08');
+INSERT INTO `sys_menu` VALUES ('478157089997660160', '商品分类', '/category', NULL, 1, 0, NULL, '478156786963390464', NULL, 0, 0, 'cc', '100000001', '2020-10-19 21:12:24', 'cc', '100000001', '2020-10-19 21:33:36');
+
+-- ----------------------------
 -- Table structure for sys_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
@@ -4084,6 +4109,11 @@ CREATE TABLE `sys_role`  (
   `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色 角色' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_role
+-- ----------------------------
+INSERT INTO `sys_role` VALUES ('478136492534079488', '客服', '001', NULL, 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-19 19:50:33', 'cc', '100000001', '2020-10-19 19:50:41');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
