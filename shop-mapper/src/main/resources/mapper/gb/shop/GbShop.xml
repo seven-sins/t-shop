@@ -47,7 +47,7 @@
 			AND a.shop_name like concat('%', #{shopName}, '%') 
 		</if>
 		ORDER BY
-			created_time DESC
+			a.created_time DESC
   	</select>
   	
 </mapper>

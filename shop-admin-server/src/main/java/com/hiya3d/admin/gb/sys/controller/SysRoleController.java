@@ -19,6 +19,7 @@ import com.hiya3d.base.request.Page;
 import com.hiya3d.base.response.Result;
 import com.hiya3d.base.utils.IdMaker;
 import com.hiya3d.model.gb.sys.SysRole;
+import com.hiya3d.model.gb.sys.vo.SysRoleVo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,11 +39,11 @@ public class SysRoleController {
 
 	@ApiOperation(value = "列表查询")
 	@GetMapping("/sysRole")
-	public Result<List<SysRole>> list(Page page, SysRole sysRole) {
+	public Result<List<SysRoleVo>> list(Page page, SysRoleVo sysRole) {
 		page.start();
-		List<SysRole> list = sysRoleService.find(sysRole);
+		List<SysRoleVo> list = sysRoleService.find(sysRole);
 
-		return new Result<>(list).total(new PageInfo<SysRole>(list).getTotal());
+		return new Result<>(list).total(new PageInfo<SysRoleVo>(list).getTotal());
 	}
 
 	@ApiOperation(value = "单记录查询")

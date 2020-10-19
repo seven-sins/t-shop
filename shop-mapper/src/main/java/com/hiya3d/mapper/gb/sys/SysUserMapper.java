@@ -1,8 +1,11 @@
 package com.hiya3d.mapper.gb.sys;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.hiya3d.model.gb.sys.SysUser;
+import com.hiya3d.model.gb.sys.vo.SysUserVo;
 
 import tk.mybatis.mapper.common.BaseMapper;
 
@@ -13,5 +16,13 @@ import tk.mybatis.mapper.common.BaseMapper;
  */
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
-
+	
+	/**
+	 * 列表查询s
+	 * @author Rex.Tan
+	 * @date 2020-10-19 14:22:43
+	 * @param sysUser
+	 * @return
+	 */
+	List<SysUserVo> find(SysUserVo sysUser);
 }

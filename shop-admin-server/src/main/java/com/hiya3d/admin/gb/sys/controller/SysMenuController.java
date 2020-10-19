@@ -1,9 +1,12 @@
 package com.hiya3d.admin.gb.sys.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.hiya3d.admin.gb.sys.service.SysMenuService;
 import com.hiya3d.base.request.Page;
 import com.hiya3d.base.response.Result;
 import com.hiya3d.base.utils.IdMaker;
 import com.hiya3d.model.gb.sys.SysMenu;
+import com.hiya3d.model.gb.sys.vo.SysMenuVo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,11 +41,50 @@ public class SysMenuController {
 
 	@ApiOperation(value = "列表查询")
 	@GetMapping("/sysMenu")
-	public Result<List<SysMenu>> list(Page page, SysMenu sysMenu) {
+	public Result<List<SysMenuVo>> list(Page page, SysMenu sysMenu) {
 		page.start();
 		List<SysMenu> list = sysMenuService.find(sysMenu);
+		List<SysMenuVo> treeList = new ArrayList<>();
+		this.refactory(list, treeList);
 
-		return new Result<>(list).total(new PageInfo<SysMenu>(list).getTotal());
+		return new Result<>(treeList);
+	}
+	
+	/**
+	 * 将菜单列表转为树形结构
+	 * @author Rex.Tan
+	 * @date 2020-10-19 17:06:34
+	 * @param list
+	 * @param treeList
+	 */
+	private void refactory(List<SysMenu> list, List<SysMenuVo> treeList){
+		if(list == null || list.isEmpty()) {
+			return;
+		}
+		for(SysMenu item: list) {
+			if(StringUtils.isBlank(item.getParentId())) {
+				SysMenuVo menuVo = new SysMenuVo();
+				BeanUtils.copyProperties(item, menuVo);
+				menuVo.setText(menuVo.getMenuName());
+				menuVo.setChildren(this.getChildren(list, menuVo.getId()));
+				treeList.add(menuVo);
+			}
+		}
+	}
+	
+	private List<SysMenuVo> getChildren(List<SysMenu> list, String parentId){
+		List<SysMenuVo> children = new ArrayList<>();
+		for(SysMenu item: list) {
+			if(parentId.equals(item.getParentId())) {
+				SysMenuVo menuVo = new SysMenuVo();
+				BeanUtils.copyProperties(item,  menuVo);
+				menuVo.setText(menuVo.getMenuName());
+				menuVo.setChildren(this.getChildren(list, menuVo.getId()));
+				children.add(menuVo);
+			}
+		}
+		
+		return children;
 	}
 
 	@ApiOperation(value = "单记录查询")

@@ -19,13 +19,13 @@ import com.hiya3d.base.request.Page;
 import com.hiya3d.base.response.Result;
 import com.hiya3d.base.utils.IdMaker;
 import com.hiya3d.model.gb.sys.SysUser;
+import com.hiya3d.model.gb.sys.vo.SysUserVo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
  * 用户
- * 
  * @author Rex.Tan
  * @date 2020年8月30日 下午1:20:01
  */
@@ -38,10 +38,10 @@ public class SysUserController {
 
 	@ApiOperation(value = "列表查询")
 	@GetMapping("/sysUser")
-	public Result<List<SysUser>> list(Page page, SysUser sysUser) {
+	public Result<List<SysUserVo>> list(Page page, SysUserVo sysUser) {
 		page.start();
-		List<SysUser> list = sysUserService.find(sysUser);
-		return new Result<>(list).total(new PageInfo<SysUser>(list).getTotal());
+		List<SysUserVo> list = sysUserService.find(sysUser);
+		return new Result<>(list).total(new PageInfo<SysUserVo>(list).getTotal());
 	}
 
 	@ApiOperation(value = "单记录查询")

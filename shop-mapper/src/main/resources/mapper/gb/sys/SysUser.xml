@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hiya3d.mapper.gb.sys.SysUserMapper">
+  	
+  	<select id="find" resultType="com.hiya3d.model.gb.sys.vo.SysUserVo" parameterType="com.hiya3d.model.gb.sys.vo.SysUserVo">
+  		SELECT 
+		    a.id,
+		    a.user_name,
+		    a.user_code,
+		    a.login_account,
+		    a.phone,
+		    a.id_card,
+		    a.birthday,
+		    a.sex,
+		    a.age,
+		    a.openid,
+		    a.unionid,
+		    a.head_img,
+		    a.is_sys_user,
+		    a.is_deleted,
+		    a.is_disabled,
+		    a.shop_id,
+		    a.created_by,
+		    a.created_user_id,
+		    a.created_time,
+		    a.updated_by,
+		    a.updated_user_id,
+		    a.updated_time,
+		    b.shop_name
+		FROM
+		    sys_user a
+		JOIN gb_shop b on a.shop_id=b.id
+		WHERE
+		    a.is_deleted = 0
+		<if test="userName != null and userName != '' " >
+			AND a.user_name like concat('%', #{userName}, '%')
+		</if>
+		<if test="shopName != null and shopName != '' " >
+			AND b.shop_name like concat('%', #{shopName}, '%')
+		</if>
+		ORDER BY
+			a.created_time DESC
+  	</select>
+  	
+</mapper>
