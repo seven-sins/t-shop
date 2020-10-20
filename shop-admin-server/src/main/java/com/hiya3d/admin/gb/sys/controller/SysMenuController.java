@@ -20,6 +20,7 @@ import com.hiya3d.admin.gb.sys.service.SysMenuService;
 import com.hiya3d.base.request.Page;
 import com.hiya3d.base.response.Result;
 import com.hiya3d.base.utils.IdMaker;
+import com.hiya3d.common.utils.Assert;
 import com.hiya3d.model.gb.sys.SysMenu;
 import com.hiya3d.model.gb.sys.vo.SysMenuVo;
 
@@ -107,6 +108,7 @@ public class SysMenuController {
 	@ApiOperation(value = "修改")
 	@PutMapping("/sysMenu/{id}")
 	public Result<?> update(@PathVariable("id") String id, @Valid @RequestBody SysMenu sysMenu) {
+		this.checkLogic(id, sysMenu.getParentId());
 		sysMenu.setId(id);
 		sysMenuService.updateByIdSelective(sysMenu);
 
@@ -119,5 +121,42 @@ public class SysMenuController {
 		sysMenuService.removeById(id);
 
 		return Result.SUCCESS;
+	}
+	
+	/**
+	 * 检查数据逻辑, 上级节点不能选择当前节点以及下级节点
+	 * @author Rex.Tan
+	 * @date 2020-10-20 13:44:38
+	 * @param id
+	 * @param parentId
+	 */
+	private void checkLogic(String id, String parentId) {
+		if(StringUtils.isBlank(parentId)) {
+			return;
+		}
+		Assert.isTrue(!id.equals(parentId), "上级分类不能选择当前节点");
+		List<SysMenu> list = sysMenuService.find(new SysMenuVo());
+		List<SysMenuVo> treeList = new ArrayList<>();
+		this.refactory(list, treeList);
+		
+		this.checkLogic(id, parentId, treeList);
+	}
+	
+	private void checkLogic(String id, String parentId, List<SysMenuVo> list) {
+		for(SysMenuVo item: list) {
+			if(id.equals(item.getId())) {
+				checkLogic(parentId, item.getChildren());
+			}
+		}
+	}
+	
+	private void checkLogic(String parentId, List<SysMenuVo> list) {
+		if(list == null) {
+			return;
+		}
+		for(SysMenuVo item: list) {
+			Assert.isTrue(!parentId.equals(item.getId()), "上级节点不能选择下级节点");
+			checkLogic(parentId, item.getChildren());
+		}
 	}
 }

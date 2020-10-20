@@ -1,4 +1,4 @@
-package com.hiya3d.model.sp.category;
+package com.hiya3d.model.gb.goods;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,7 +21,7 @@ import tk.mybatis.mapper.annotation.Order;
  * @date 2020年8月30日 下午2:31:34
  */
 @Data
-public class SpGoodsCategory implements Serializable {
+public class GbCategory implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@ApiModelProperty(value = "id")
@@ -41,6 +41,10 @@ public class SpGoodsCategory implements Serializable {
 	@ApiModelProperty(value = "排序")
 	@Order("ASC")
 	private Integer sort;
+	
+	@ApiModelProperty(value = "主题")
+	@Length(max = 32, message = "主题输入超出最大长度(32)")
+	private String themeId;
 
 	@ApiModelProperty(value = "备注")
 	@Length(max = 500, message = "备注输入超出最大长度(500)")
@@ -58,10 +62,6 @@ public class SpGoodsCategory implements Serializable {
 	@ApiModelProperty(value = "是否停用(1:是,0:否)")
 	@IntValue(message = "是否停用(1:是,0:否)取值超出范围")
 	private Integer isDisabled;
-
-	@ApiModelProperty(value = "店铺ID")
-	@Length(max = 32, message = "店铺ID输入超出最大长度(32)")
-	private String shopId;
 
 	@ApiModelProperty(value = "创建人")
 	@Length(max = 50, message = "创建人输入超出最大长度(50)")
