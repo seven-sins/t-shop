@@ -46,7 +46,7 @@ public class SpGoodsColor implements Serializable {
 	@ApiModelProperty(value = "排序")
 	@IntValue(message = "排序取值超出范围")
 	@NotNull(message = "排序不能为空")
-	private Integer sorting;
+	private Integer sort;
 
 	@LogicDelete
 	@ApiModelProperty(value = "是否删除(1:是,0:否)")

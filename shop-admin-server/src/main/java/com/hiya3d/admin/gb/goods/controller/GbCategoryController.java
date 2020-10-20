@@ -94,8 +94,9 @@ public class GbCategoryController {
 		this.checkExist(gbCategory.getCategoryName(), null);
 		if(StringUtils.isBlank(gbCategory.getParentId())) {
 			Assert.notEmpty(gbCategory.getThemeId(), "主题不能为空");
+		} else {
+			gbCategory.setThemeId(this.getThemeIdByParent(gbCategory.getParentId()));
 		}
-		gbCategory.setThemeId(this.getThemeIdByParent(gbCategory.getParentId()));
 		gbCategory.setId(IdMaker.get());
 		gbCategoryService.save(gbCategory);
 
