@@ -38,7 +38,6 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "菜单")
 @RestController
 public class SysMenuController {
-
 	@Autowired
 	SysMenuService sysMenuService;
 	@Autowired

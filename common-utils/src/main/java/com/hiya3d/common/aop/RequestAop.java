@@ -46,18 +46,6 @@ public class RequestAop {
 	static final List<String> LOGIN_URL = new ArrayList<String>() {
 		private static final long serialVersionUID = 1L;
 		{
-			add("/rest/employee/user/pc/doLogin");
-			add("/rest/employee/user/pc/doLogin/v2");
-			add("/rest/employee/user/app/doLogin");
-			add("/rest/employee/cas/login");
-			add("/rest/employee/sso");
-			add("/rest/employee/parse/user");
-			add("/rest/employee/employeeSignet/signStatusReturnNotice");
-			add("/rest/employee/employeeSignet/callback/notice");
-			add("/rest/wechat/getWechatUserInfo");
-			add("/rest/employee/user/sendMsg");
-			add("/rest/employee/user/app/phone/doLogin");
-			add("/rest/employee/user/app/phone/resetPasswordByPhone");
 			// 第三方数据同步接口
 			add("/rest/sync/data");
 			// 版本检查接口
@@ -113,7 +101,6 @@ public class RequestAop {
 				/**
 				 * 拦截到未知异常
 				 */
-				log.error("未捕获异常", e);
 				StringWriter stringWriter = new StringWriter();
 				e.printStackTrace(new PrintWriter(stringWriter));
 				this.logInfo2Kafka(request, url, bodyArgs, urlArgs, "未捕获异常: " + stringWriter.toString(), 500, endTime - startTime, false);
@@ -129,7 +116,7 @@ public class RequestAop {
 	/**
 	 * 请录请求耗时
 	 * 
-	 * @author Tan Ling
+	 * @author Rex.Tan
 	 * @date 2018年12月13日 下午2:51:31
 	 * @param url           请求地址
 	 * @param args          requestBody中的参数
@@ -177,7 +164,7 @@ public class RequestAop {
 	/**
 	 * 读取requestBody中的参数
 	 * 
-	 * @author Tan Ling
+	 * @author Rex.Tan
 	 * @date 2018年12月13日 下午2:54:31
 	 * @param bodyArgs
 	 * @param url
@@ -210,7 +197,7 @@ public class RequestAop {
 	/**
 	 * 读取url中的参数
 	 * 
-	 * @author Tan Ling
+	 * @author Rex.Tan
 	 * @date 2019年9月12日 下午2:54:40
 	 * @param request
 	 * @param urlArgs
