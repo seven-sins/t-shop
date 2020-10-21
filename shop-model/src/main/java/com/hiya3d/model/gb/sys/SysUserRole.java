@@ -43,7 +43,7 @@ public class SysUserRole implements Serializable {
 
 	@ApiModelProperty(value = "店铺ID")
 	@Length(max = 32, message = "店铺ID输入超出最大长度(32)")
-	@NotBlank(message = "店铺ID不能为空")
+	//	@NotBlank(message = "店铺ID不能为空")
 	private String shopId;
 
 	@ApiModelProperty(value = "创建人")

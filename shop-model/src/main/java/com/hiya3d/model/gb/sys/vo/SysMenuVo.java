@@ -21,4 +21,7 @@ public class SysMenuVo extends SysMenu {
 	
 	@ApiModelProperty(value = "图标样式")
 	private String iconCls;
+	
+	@ApiModelProperty(value = "当前节点是否选中状态(修复前端控件显示问题)")
+	private Boolean isSelect = false;
 }

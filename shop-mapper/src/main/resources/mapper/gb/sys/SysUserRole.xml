@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hiya3d.mapper.gb.sys.SysUserRoleMapper">
+
+	<delete id="deleteByUserId">
+		delete from sys_user_role where user_id=#{userId}
+	</delete>
+
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into sys_user_role(
+			id,
+			user_id,
+			role_id,
+			shop_id,
+			is_disabled,
+			created_by,
+			created_time,
+			created_user_id,
+			updated_by,
+			updated_time,
+			updated_user_id
+		) values
+		<foreach collection="list" item="item" separator=",">
+			(
+				#{item.id},
+				#{item.userId},
+				#{item.roleId},
+				#{item.shopId},
+				#{item.isDisabled},
+				#{item.createdBy},
+				#{item.createdTime},
+				#{item.createdUserId},
+				#{item.updatedBy},
+				#{item.updatedTime},
+				#{item.updatedUserId}
+			)
+		</foreach>
+	</insert>
+
+</mapper>

@@ -17,7 +17,6 @@ import com.github.pagehelper.PageInfo;
 import com.hiya3d.admin.gb.sys.service.SysUserRoleService;
 import com.hiya3d.base.request.Page;
 import com.hiya3d.base.response.Result;
-import com.hiya3d.base.utils.IdMaker;
 import com.hiya3d.model.gb.sys.SysUserRole;
 
 import io.swagger.annotations.Api;
@@ -39,7 +38,7 @@ public class SysUserRoleController {
 	@ApiOperation(value = "列表查询")
 	@GetMapping("/sysUserRole")
 	public Result<List<SysUserRole>> list(Page page, SysUserRole sysUserRole) {
-		page.start();
+		//		page.start();
 		List<SysUserRole> list = sysUserRoleService.find(sysUserRole);
 
 		return new Result<>(list).total(new PageInfo<SysUserRole>(list).getTotal());
@@ -52,10 +51,9 @@ public class SysUserRoleController {
 	}
 
 	@ApiOperation(value = "保存")
-	@PostMapping("/sysUserRole")
-	public Result<?> save(@Valid @RequestBody SysUserRole sysUserRole) {
-		sysUserRole.setId(IdMaker.get());
-		sysUserRoleService.save(sysUserRole);
+	@PostMapping("/sysUserRole/saveBatch/{userId}")
+	public Result<?> save(@PathVariable("userId") String userId, @RequestBody List<SysUserRole> userRoleList) {
+		sysUserRoleService.saveBatch(userId, userRoleList);
 
 		return Result.SUCCESS;
 	}

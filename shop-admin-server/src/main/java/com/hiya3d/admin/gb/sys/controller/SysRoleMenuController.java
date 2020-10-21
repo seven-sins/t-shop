@@ -17,7 +17,6 @@ import com.github.pagehelper.PageInfo;
 import com.hiya3d.admin.gb.sys.service.SysRoleMenuService;
 import com.hiya3d.base.request.Page;
 import com.hiya3d.base.response.Result;
-import com.hiya3d.base.utils.IdMaker;
 import com.hiya3d.model.gb.sys.SysRoleMenu;
 
 import io.swagger.annotations.Api;
@@ -52,10 +51,9 @@ public class SysRoleMenuController {
 	}
 
 	@ApiOperation(value = "保存")
-	@PostMapping("/sysRoleMenu")
-	public Result<?> save(@Valid @RequestBody SysRoleMenu sysRoleMenu) {
-		sysRoleMenu.setId(IdMaker.get());
-		sysRoleMenuService.save(sysRoleMenu);
+	@PostMapping("/sysRoleMenu/saveBatch/{roleId}")
+	public Result<?> save(@PathVariable("roleId") String roleId, @RequestBody List<SysRoleMenu> roleMenuList) {
+		sysRoleMenuService.saveBatch(roleId, roleMenuList);
 
 		return Result.SUCCESS;
 	}

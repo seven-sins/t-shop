@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hiya3d.admin.gb.sys.service.SysMenuService;
+import com.hiya3d.admin.gb.sys.service.SysRoleMenuService;
 import com.hiya3d.base.request.Page;
 import com.hiya3d.base.response.Result;
 import com.hiya3d.base.utils.IdMaker;
 import com.hiya3d.common.utils.Assert;
 import com.hiya3d.model.gb.sys.SysMenu;
+import com.hiya3d.model.gb.sys.SysRoleMenu;
 import com.hiya3d.model.gb.sys.vo.SysMenuVo;
 
 import io.swagger.annotations.Api;
@@ -39,11 +41,12 @@ public class SysMenuController {
 
 	@Autowired
 	SysMenuService sysMenuService;
+	@Autowired
+	SysRoleMenuService sysRoleMenuService;
 
 	@ApiOperation(value = "列表查询")
 	@GetMapping("/sysMenu")
 	public Result<List<SysMenuVo>> list(Page page, SysMenu sysMenu) {
-		//		page.start();
 		List<SysMenu> list = sysMenuService.find(sysMenu);
 		List<SysMenuVo> treeList = new ArrayList<>();
 		this.refactory(list, treeList);
@@ -51,6 +54,44 @@ public class SysMenuController {
 		return new Result<>(treeList);
 	}
 	
+	@ApiOperation(value = "角色权限列表查询")
+	@GetMapping("/sysMenu/{roleId}/menuList")
+	public Result<List<SysMenuVo>> queryRoleMenuList(@PathVariable("roleId") String roleId, SysMenu sysMenu) {
+		List<SysMenu> list = sysMenuService.find(sysMenu);
+		SysRoleMenu param = new SysRoleMenu();
+		param.setRoleId(roleId);
+		List<SysRoleMenu> roleMenuList = sysRoleMenuService.find(param);
+		List<SysMenuVo> treeList = new ArrayList<>();
+		this.refactory(list, treeList);
+		// 更新数据选中状态
+		this.updateCheckStatus(treeList, roleMenuList);
+
+		return new Result<>(treeList);
+	}
+	
+	/**
+	 * 更新数据选中状态
+	 * @author Rex.Tan
+	 * @date 2020-10-21 17:36:54
+	 * @param treeList
+	 * @param roleMenuList
+	 */
+	private void updateCheckStatus(List<SysMenuVo> treeList, List<SysRoleMenu> roleMenuList) {
+		if(roleMenuList == null || roleMenuList.isEmpty()) {
+			return;
+		}
+		for(SysMenuVo item: treeList) {
+			for(SysRoleMenu roleMenu: roleMenuList) {
+				if(item.getId().equals(roleMenu.getMenuId())) {
+					item.setIsSelect(true);
+				}
+			}
+			if(item.getChildren() != null && !item.getChildren().isEmpty()) {
+				this.updateCheckStatus(item.getChildren(), roleMenuList);
+			}
+		}
+	}
+
 	/**
 	 * 将菜单列表转为树形结构
 	 * @author Rex.Tan
