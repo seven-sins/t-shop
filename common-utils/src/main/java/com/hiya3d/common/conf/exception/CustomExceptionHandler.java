@@ -23,11 +23,14 @@ import com.hiya3d.base.exception.CustomException;
 import com.hiya3d.base.response.Result;
 import com.hiya3d.common.utils.LogUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 全局异常捕获
  * @author Rex.Tan
  * @date 2018年12月5日 下午3:10:30
  */
+@Slf4j
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
@@ -83,7 +86,8 @@ public class CustomExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public Object commonException(Exception e) {
-		LogUtil.printException("未捕获异常: ", e);
+		//		LogUtil.printException("未捕获异常: ", e);
+		log.error("未捕获异常", e);
 		return new Result<>(400, "未捕获异常: " + e.getMessage());
 	}
 

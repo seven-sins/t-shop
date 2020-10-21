@@ -105,30 +105,30 @@ public class SysMenuController {
 		}
 		for(SysMenu item: list) {
 			if(StringUtils.isBlank(item.getParentId())) {
-				SysMenuVo menuVo = new SysMenuVo();
-				BeanUtils.copyProperties(item, menuVo);
-				menuVo.setText(menuVo.getMenuName());
-				// menuVo.setIconCls(menuVo.getIcon());
-				menuVo.setChildren(this.getChildren(list, menuVo.getId()));
-				treeList.add(menuVo);
+				treeList.add(this.getSysMenuVo(item, list, treeList));
 			}
 		}
 	}
 	
-	private List<SysMenuVo> getChildren(List<SysMenu> list, String parentId){
+	private List<SysMenuVo> getChildren(List<SysMenu> list, String parentId, List<SysMenuVo> treeList){
 		List<SysMenuVo> children = new ArrayList<>();
 		for(SysMenu item: list) {
 			if(parentId.equals(item.getParentId())) {
-				SysMenuVo menuVo = new SysMenuVo();
-				BeanUtils.copyProperties(item,  menuVo);
-				menuVo.setText(menuVo.getMenuName());
-				// menuVo.setIconCls(menuVo.getIcon());
-				menuVo.setChildren(this.getChildren(list, menuVo.getId()));
-				children.add(menuVo);
+				children.add(this.getSysMenuVo(item, list, treeList));
 			}
 		}
 		
 		return children.isEmpty() ? null : children;
+	}
+	
+	private SysMenuVo getSysMenuVo(SysMenu item, List<SysMenu> list, List<SysMenuVo> treeList) {
+		SysMenuVo menuVo = new SysMenuVo();
+		BeanUtils.copyProperties(item, menuVo);
+		menuVo.setText(menuVo.getMenuName());
+		menuVo.setParentId(StringUtils.isBlank(menuVo.getParentId()) ? null: menuVo.getParentId());
+		menuVo.setChildren(this.getChildren(list, menuVo.getId(), treeList));
+		
+		return menuVo;
 	}
 
 	@ApiOperation(value = "单记录查询")
@@ -151,6 +151,7 @@ public class SysMenuController {
 	public Result<?> update(@PathVariable("id") String id, @Valid @RequestBody SysMenu sysMenu) {
 		this.checkLogic(id, sysMenu.getParentId());
 		sysMenu.setId(id);
+		sysMenu.setParentId(StringUtils.isBlank(sysMenu.getParentId()) ? "" : sysMenu.getParentId());
 		sysMenuService.updateByIdSelective(sysMenu);
 
 		return Result.SUCCESS;

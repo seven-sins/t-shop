@@ -113,6 +113,7 @@ public class RequestAop {
 				/**
 				 * 拦截到未知异常
 				 */
+				log.error("未捕获异常", e);
 				StringWriter stringWriter = new StringWriter();
 				e.printStackTrace(new PrintWriter(stringWriter));
 				this.logInfo2Kafka(request, url, bodyArgs, urlArgs, "未捕获异常: " + stringWriter.toString(), 500, endTime - startTime, false);
