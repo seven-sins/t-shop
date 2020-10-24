@@ -78,19 +78,15 @@ public class IdMaker {
 	/**
 	 * 构造函数
 	 * 
-	 * @param workerId
-	 *            工作ID (0~31)
-	 * @param dataCenterId
-	 *            数据中心ID (0~31)
+	 * @param workerId     工作ID (0~31)
+	 * @param dataCenterId 数据中心ID (0~31)
 	 */
 	public IdMaker(long workerId, long dataCenterId) {
 		if (workerId > maxWorkerId || workerId < 0) {
-			throw new IllegalArgumentException(
-					String.format("workerId can't be greater than %d or less than 0", maxWorkerId));
+			throw new IllegalArgumentException(String.format("workerId can't be greater than %d or less than 0", maxWorkerId));
 		}
 		if (dataCenterId > maxDataCenterId || dataCenterId < 0) {
-			throw new IllegalArgumentException(
-					String.format("dataCenterId can't be greater than %d or less than 0", maxDataCenterId));
+			throw new IllegalArgumentException(String.format("dataCenterId can't be greater than %d or less than 0", maxDataCenterId));
 		}
 		this.workerId = workerId;
 		this.dataCenterId = dataCenterId;
