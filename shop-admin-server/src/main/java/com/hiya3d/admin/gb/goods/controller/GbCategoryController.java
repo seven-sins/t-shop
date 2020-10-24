@@ -62,6 +62,7 @@ public class GbCategoryController {
 		for(GbCategoryVo item: list) {
 			if(StringUtils.isBlank(item.getParentId())) {
 				item.setText(item.getCategoryName());
+				item.setParentId(StringUtils.isBlank(item.getParentId()) ? null : item.getParentId());
 				item.setChildren(this.getChildren(list, item.getId()));
 				treeList.add(item);
 			}
@@ -73,6 +74,7 @@ public class GbCategoryController {
 		for(GbCategoryVo item: list) {
 			if(parentId.equals(item.getParentId())) {
 				item.setText(item.getCategoryName());
+				item.setParentId(StringUtils.isBlank(item.getParentId()) ? null : item.getParentId());
 				item.setChildren(this.getChildren(list, item.getId()));
 				children.add(item);
 			}
@@ -93,6 +95,7 @@ public class GbCategoryController {
 		// 检查分类名称是否已存在
 		this.checkExist(gbCategory.getCategoryName(), null);
 		if(StringUtils.isBlank(gbCategory.getParentId())) {
+			gbCategory.setParentId("");
 			Assert.notEmpty(gbCategory.getThemeId(), "主题不能为空");
 		} else {
 			gbCategory.setThemeId(this.getThemeIdByParent(gbCategory.getParentId()));
@@ -110,9 +113,11 @@ public class GbCategoryController {
 		// 检查分类名称是否已存在
 		this.checkExist(gbCategory.getCategoryName(), id);
 		if(StringUtils.isBlank(gbCategory.getParentId())) {
+			gbCategory.setParentId("");
 			Assert.notEmpty(gbCategory.getThemeId(), "主题不能为空");
+		} else {
+			gbCategory.setThemeId(this.getThemeIdByParent(gbCategory.getParentId()));
 		}
-		gbCategory.setThemeId(this.getThemeIdByParent(gbCategory.getParentId()));
 		gbCategory.setId(id);
 		gbCategoryService.updateByIdSelective(gbCategory);
 
@@ -129,7 +134,7 @@ public class GbCategoryController {
 	
 	private String getThemeIdByParent(String parentId) {
 		if(StringUtils.isBlank(parentId)) {
-			return null;
+			return "";
 		}
 		GbCategory parent = gbCategoryService.getById(parentId);
 		Assert.notNull(parent, "参数错误, 上级分类不存在");

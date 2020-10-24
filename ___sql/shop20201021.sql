@@ -11,11 +11,68 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 19/10/2020 21:57:33
+ Date: 21/10/2020 21:21:08
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for gb_category
+-- ----------------------------
+DROP TABLE IF EXISTS `gb_category`;
+CREATE TABLE `gb_category`  (
+  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `category_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分类名称',
+  `category_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分类编码',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上级分类',
+  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
+  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
+  `sort` int(11) NULL DEFAULT NULL,
+  `theme_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
+  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
+  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
+  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
+  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品分类 商品分类' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of gb_category
+-- ----------------------------
+INSERT INTO `gb_category` VALUES ('478364762970071040', '手机', 'A0001', NULL, NULL, 0, 0, 1, '477716091869929472', 'cc', '100000001', '2020-10-20 10:57:37', 'cc', '100000001', '2020-10-20 10:58:22');
+INSERT INTO `gb_category` VALUES ('478375429668151296', '华为', 'A00010001', NULL, '478364762970071040', 0, 0, 1, '477716091869929472', 'cc', '100000001', '2020-10-20 11:40:00', NULL, NULL, NULL);
+INSERT INTO `gb_category` VALUES ('478416369283833856', '空调', 'A0002', NULL, NULL, 0, 0, 1, '477722464779313152', 'cc', '100000001', '2020-10-20 14:22:41', NULL, NULL, NULL);
+INSERT INTO `gb_category` VALUES ('478416496622903296', '格力', 'A00020001', NULL, '478416369283833856', 0, 0, 1, '477722464779313152', 'cc', '100000001', '2020-10-20 14:23:12', NULL, NULL, NULL);
+INSERT INTO `gb_category` VALUES ('478416594627010560', '美的', 'A00020002', NULL, '478416369283833856', 0, 0, 2, '477722464779313152', 'cc', '100000001', '2020-10-20 14:23:35', 'cc', '100000001', '2020-10-20 14:23:41');
+INSERT INTO `gb_category` VALUES ('478416720552599552', '苹果', 'A00010002', NULL, '478364762970071040', 0, 0, 2, '477716091869929472', 'cc', '100000001', '2020-10-20 14:24:05', NULL, NULL, NULL);
+INSERT INTO `gb_category` VALUES ('478416798499545088', '小米', 'A00010003', NULL, '478364762970071040', 0, 0, 3, '477716091869929472', 'cc', '100000001', '2020-10-20 14:24:24', 'cc', '100000001', '2020-10-21 20:03:14');
+INSERT INTO `gb_category` VALUES ('478416881764868096', '三星', 'A00010004', NULL, '478364762970071040', 0, 0, 4, '477716091869929472', 'cc', '100000001', '2020-10-20 14:24:43', 'cc', '100000001', '2020-10-21 20:05:54');
+INSERT INTO `gb_category` VALUES ('478416973704011776', 'VIVO', 'A00010005', NULL, '478364762970071040', 0, 0, 5, '477716091869929472', 'cc', '100000001', '2020-10-20 14:25:05', NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for gb_company_logistics
+-- ----------------------------
+DROP TABLE IF EXISTS `gb_company_logistics`;
+CREATE TABLE `gb_company_logistics`  (
+  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `logistics_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '物流名称',
+  `is_free` int(11) NOT NULL COMMENT '是否免费(1:是,0:否)',
+  `price` decimal(11, 2) NOT NULL COMMENT '运费(is_free==0时必填)',
+  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
+  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
+  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
+  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
+  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
+  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
+  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '店铺物流信息 店铺物流信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for gb_shop
@@ -3737,6 +3794,28 @@ INSERT INTO `region` VALUES ('998', '220701', '市辖区', '91', 0, 0, 'Shixiaqu
 INSERT INTO `region` VALUES ('999', '220702', '宁江区', '91', 0, 0, 'Ningjiang Qu', 'NJA');
 
 -- ----------------------------
+-- Table structure for sp_category
+-- ----------------------------
+DROP TABLE IF EXISTS `sp_category`;
+CREATE TABLE `sp_category`  (
+  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'id',
+  `category_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分类名称',
+  `category_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分类编码',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '上级分类',
+  `is_deleted` int(11) NOT NULL COMMENT '是否删除(1:是,0:否)',
+  `is_disabled` int(11) NOT NULL COMMENT '是否停用(1:是,0:否)',
+  `shop_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺ID',
+  `created_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人',
+  `created_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '创建人ID',
+  `created_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `updated_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人',
+  `updated_user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人ID',
+  `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品分类 商品分类' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for sp_goods
 -- ----------------------------
 DROP TABLE IF EXISTS `sp_goods`;
@@ -4087,7 +4166,7 @@ INSERT INTO `sys_menu` VALUES ('478137014070616064', '用户管理', '/user', 'f
 INSERT INTO `sys_menu` VALUES ('478137092382466048', '角色管理', '/role', 'fa fa-drivers-license-o', 1, 0, NULL, '478136855043579904', 2, 0, 0, 'cc', '100000001', '2020-10-19 19:52:56', 'cc', '100000001', '2020-10-19 20:00:36');
 INSERT INTO `sys_menu` VALUES ('478137289426673664', '菜单管理', '/menu', 'fa fa-list-alt', 1, 0, NULL, '478136855043579904', 3, 0, 0, 'cc', '100000001', '2020-10-19 19:53:43', 'cc', '100000001', '2020-10-19 20:00:44');
 INSERT INTO `sys_menu` VALUES ('478156786963390464', '商品管理', NULL, 'fa fa-cart-plus', 1, 0, NULL, NULL, 3, 0, 0, 'cc', '100000001', '2020-10-19 21:11:12', 'cc', '100000001', '2020-10-19 21:23:08');
-INSERT INTO `sys_menu` VALUES ('478157089997660160', '商品分类', '/category', NULL, 1, 0, NULL, '478156786963390464', NULL, 0, 0, 'cc', '100000001', '2020-10-19 21:12:24', 'cc', '100000001', '2020-10-19 21:33:36');
+INSERT INTO `sys_menu` VALUES ('478157089997660160', '商品分类', '/category', NULL, 1, 0, NULL, '478156786963390464', 1, 0, 0, 'cc', '100000001', '2020-10-19 21:12:24', 'cc', '100000001', '2020-10-19 21:33:36');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -4114,6 +4193,8 @@ CREATE TABLE `sys_role`  (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('478136492534079488', '客服', '001', NULL, 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-19 19:50:33', 'cc', '100000001', '2020-10-19 19:50:41');
+INSERT INTO `sys_role` VALUES ('478465053199507456', '仓管员', '002', NULL, 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-20 17:36:12', NULL, NULL, NULL);
+INSERT INTO `sys_role` VALUES ('478465166223417344', '销售', '003', NULL, 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-20 17:36:35', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -4134,6 +4215,29 @@ CREATE TABLE `sys_role_menu`  (
   `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关系表 角色菜单关系表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_role_menu
+-- ----------------------------
+INSERT INTO `sys_role_menu` VALUES ('478868523333263360', '478465166223417344', '478136855043579904', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868523333263361', '478465166223417344', '478137014070616064', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868523333263362', '478465166223417344', '478137092382466048', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868523333263363', '478465166223417344', '478137289426673664', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868523333263364', '478465166223417344', '478136603452448768', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868523333263365', '478465166223417344', '478136666106961920', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868523333263366', '478465166223417344', '478136749883990016', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868523333263367', '478465166223417344', '478156786963390464', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868523333263368', '478465166223417344', '478157089997660160', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:23', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868555314831360', '478465053199507456', '478136855043579904', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:31', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868555314831361', '478465053199507456', '478137014070616064', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:31', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868555314831362', '478465053199507456', '478137092382466048', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:31', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868555314831363', '478465053199507456', '478137289426673664', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:31', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868575959195648', '478136492534079488', '478136855043579904', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:36', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868575959195649', '478136492534079488', '478137014070616064', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:36', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868575959195650', '478136492534079488', '478137092382466048', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:36', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868575959195651', '478136492534079488', '478137289426673664', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:36', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868575959195652', '478136492534079488', '478156786963390464', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:36', NULL, NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('478868575959195653', '478136492534079488', '478157089997660160', 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:36', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -4171,6 +4275,7 @@ CREATE TABLE `sys_user`  (
 INSERT INTO `sys_user` VALUES ('477801171242000384', 'user1', '001', 'user1', '18888889999', '513999999999999999', '2020-10-15 00:00:00', 0, NULL, NULL, NULL, NULL, 0, 0, 0, '477790169326755840', 'cc', '100000001', '2020-10-18 21:38:07', 'cc', '100000001', '2020-10-18 21:42:15');
 INSERT INTO `sys_user` VALUES ('477802803207938048', '111', '111', '111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, '477789028320878592', 'cc', '100000001', '2020-10-18 21:44:36', NULL, NULL, NULL);
 INSERT INTO `sys_user` VALUES ('477803169286791168', '222', '222', '222', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '477789028320878592', 'cc', '100000001', '2020-10-18 21:46:03', NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES ('478794956600057856', 'user2', '002', 'user2', NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, 0, 0, '477789028320878592', 'cc', '100000001', '2020-10-21 15:27:03', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -4190,5 +4295,12 @@ CREATE TABLE `sys_user_role`  (
   `updated_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户角色关系表 用户角色关系表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_user_role
+-- ----------------------------
+INSERT INTO `sys_user_role` VALUES ('478868503930413056', '477801171242000384', '478465053199507456', 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:19', NULL, NULL, NULL);
+INSERT INTO `sys_user_role` VALUES ('478868503930413057', '477801171242000384', '478136492534079488', 0, '477789028320878592', 'cc', '100000001', '2020-10-21 20:19:19', NULL, NULL, NULL);
+INSERT INTO `sys_user_role` VALUES ('478883267167461376', '478794956600057856', '478465166223417344', 0, '477789028320878592', 'cc', '100000001', '2020-10-21 21:17:58', NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
