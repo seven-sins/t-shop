@@ -5,8 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Size;
 
 import com.hiya3d.base.validator.IntValue;
 
@@ -25,16 +24,16 @@ public class GbCategory implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@ApiModelProperty(value = "id")
-	@Length(max = 32, message = "id输入超出最大长度(32)")
+	@Size(max = 32, message = "id输入超出最大长度(32)")
 	private String id;
 
 	@ApiModelProperty(value = "分类名称")
-	@Length(max = 50, message = "分类名称输入超出最大长度(50)")
+	@Size(max = 50, message = "分类名称输入超出最大长度(50)")
 	@NotBlank(message = "分类名称不能为空")
 	private String categoryName;
 
 	@ApiModelProperty(value = "分类编码")
-	@Length(max = 50, message = "分类编码输入超出最大长度(50)")
+	@Size(max = 50, message = "分类编码输入超出最大长度(50)")
 	@NotBlank(message = "分类编码不能为空")
 	private String categoryCode;
 	
@@ -43,15 +42,15 @@ public class GbCategory implements Serializable {
 	private Integer sort;
 	
 	@ApiModelProperty(value = "主题")
-	@Length(max = 32, message = "主题输入超出最大长度(32)")
+	@Size(max = 32, message = "主题输入超出最大长度(32)")
 	private String themeId;
 
 	@ApiModelProperty(value = "备注")
-	@Length(max = 500, message = "备注输入超出最大长度(500)")
+	@Size(max = 500, message = "备注输入超出最大长度(500)")
 	private String remark;
 
 	@ApiModelProperty(value = "上级分类")
-	@Length(max = 32, message = "上级分类输入超出最大长度(32)")
+	@Size(max = 32, message = "上级分类输入超出最大长度(32)")
 	private String parentId;
 
 	@LogicDelete
@@ -64,22 +63,22 @@ public class GbCategory implements Serializable {
 	private Integer isDisabled;
 
 	@ApiModelProperty(value = "创建人")
-	@Length(max = 50, message = "创建人输入超出最大长度(50)")
+	@Size(max = 50, message = "创建人输入超出最大长度(50)")
 	private String createdBy;
 
 	@ApiModelProperty(value = "创建人ID")
-	@Length(max = 32, message = "创建人ID输入超出最大长度(32)")
+	@Size(max = 32, message = "创建人ID输入超出最大长度(32)")
 	private String createdUserId;
 
 	@ApiModelProperty(value = "创建时间")
 	private Date createdTime;
 
 	@ApiModelProperty(value = "更新人")
-	@Length(max = 50, message = "更新人输入超出最大长度(50)")
+	@Size(max = 50, message = "更新人输入超出最大长度(50)")
 	private String updatedBy;
 
 	@ApiModelProperty(value = "更新人ID")
-	@Length(max = 32, message = "更新人ID输入超出最大长度(32)")
+	@Size(max = 32, message = "更新人ID输入超出最大长度(32)")
 	private String updatedUserId;
 
 	@ApiModelProperty(value = "更新时间")

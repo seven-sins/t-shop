@@ -7,15 +7,10 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 
-import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import com.alibaba.druid.wall.WallConfig;
-import com.alibaba.druid.wall.WallFilter;
 
 /**
  * druid配置
@@ -29,11 +24,6 @@ public class DruidConfiguration {
 	public DataSource druidDataSource() {
 		return new DruidDataSource();
 	}
-
-	@Bean
-	public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return new DataSourceTransactionManager(druidDataSource());
-    }
 	
 	@Bean
 	public ServletRegistrationBean<?> statViewServle() {
@@ -64,24 +54,4 @@ public class DruidConfiguration {
 		return filterRegistrationBean;
 	}
 
-	@Bean
-	public StatFilter statFilter11() {
-		StatFilter statFilter = new StatFilter();
-		statFilter.setLogSlowSql(true);
-		statFilter.setMergeSql(true);
-		statFilter.setSlowSqlMillis(1000);
-
-		return statFilter;
-	}
-
-	@Bean
-	public WallFilter wallFilter() {
-		WallFilter wallFilter = new WallFilter();
-		// 允许执行多条SQL
-		WallConfig config = new WallConfig();
-		config.setMultiStatementAllow(true);
-		wallFilter.setConfig(config);
-
-		return wallFilter;
-	}
 }

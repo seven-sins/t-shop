@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.hiya3d.base.validator.IntValue;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import tk.mybatis.mapper.annotation.LogicDelete;
@@ -23,6 +24,7 @@ import tk.mybatis.mapper.annotation.LogicDelete;
  * @date 2020年8月30日 下午2:32:45
  */
 @Data
+@ApiModel("商品")
 public class SpGoods implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
