@@ -16,6 +16,7 @@ import org.apache.ibatis.plugin.Signature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hiya3d.common.conf.mybatis.sql.SqlAnalysisUtil;
 import com.hiya3d.common.conf.user.context.UserContext;
 
 /**
@@ -23,19 +24,21 @@ import com.hiya3d.common.conf.user.context.UserContext;
  * @author rex.tan
  * @date 2018年12月9日 下午5:57:33
  */
-@Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}),})
+@Intercepts({ 
+	@Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class })
+})
 public class CustomMybatisInterceptor implements Interceptor {
     private static final Logger LOG = LoggerFactory.getLogger(CustomMybatisInterceptor.class);
 
-    @SuppressWarnings("rawtypes")
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Object intercept(Invocation invocation) throws Throwable {
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
         SqlCommandType sqlCommandType = mappedStatement.getSqlCommandType();
         Object parameter = invocation.getArgs()[1];
         if (parameter instanceof Map) {
             try {
-                Map map = ((Map) parameter);
+                Map<String, Object> map = ((Map<String, Object>) parameter);
                 if (!map.containsKey("param1")) {
                     return invocation.proceed();
                 }
@@ -120,28 +123,19 @@ public class CustomMybatisInterceptor implements Interceptor {
                     // 设置当前登录用户
                     if ("updatedBy".equals(field.getName())) {
                         field.setAccessible(true);
-                        Object value = field.get(parameter);
-                        if (value == null) {
-                            field.set(parameter, UserContext.get().getUserName());
-                        }
+                        field.set(parameter, UserContext.get().getUserName());
                         field.setAccessible(false);
                     }
                     // 设置当前用户ID
                     else if ("updatedUserId".equals(field.getName())) {
                         field.setAccessible(true);
-                        Object value = field.get(parameter);
-                        if (value == null && UserContext.get() != null) {
-                            field.set(parameter, UserContext.get().getUserId());
-                        }
+                        field.set(parameter, UserContext.get().getUserId());
                         field.setAccessible(false);
                     }
                     // 设置当前时间
                     else if ("updatedTime".equals(field.getName())) {
                         field.setAccessible(true);
-                        Object value = field.get(parameter);
-                        if (value == null) {
-                            field.set(parameter, new Date());
-                        }
+                        field.set(parameter, new Date());
                         field.setAccessible(false);
                     }
                 } catch (Exception e) {
@@ -149,12 +143,13 @@ public class CustomMybatisInterceptor implements Interceptor {
                 }
             }
         }
+        
         // 输出sql
-        //try {
-        //	LogUtil.printSql(mappedStatement.getConfiguration(), mappedStatement.getBoundSql(parameter), mappedStatement.getId());
-        //} catch(Exception e) {
-        //	LOG.error("=============解析sql出错", e);
-        //}
+        try {
+        	SqlAnalysisUtil.printSql(invocation);
+        } catch(Exception e) {
+        	LOG.error("=============解析sql出错", e);
+        }
 
         return invocation.proceed();
     }
